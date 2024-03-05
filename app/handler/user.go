@@ -45,6 +45,16 @@ func (u *User) Create(w http.ResponseWriter, r *http.Request) {
 		Email:    user.Email,
 	}
 
+	if user := userCollection.FindOne(context.TODO(), bson.M{"email": user.Email}); user.Err() != mongo.ErrNoDocuments {
+		w.WriteHeader(http.StatusInternalServerError)
+		response := responses.UserResponse{
+			Status:  http.StatusInternalServerError,
+			Message: "User Already exists",
+			Data:    map[string]interface{}{"data": nil}}
+		json.NewEncoder(w).Encode(response)
+		return
+	}
+
 	result, err := userCollection.InsertOne(context.TODO(), newUser)
 
 	if err != nil {
@@ -79,6 +89,10 @@ func (u *User) Login(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+		w.Header().Set("Content-type", "application/json")
+		w.WriteHeader(http.StatusInternalServerError)
+		response := responses.UserResponse{Status: http.StatusInternalServerError, Message: "A server error occured", Data: map[string]interface{}{"data": err.Error()}}
+		json.NewEncoder(w).Encode(response)
 		return
 	}
 
