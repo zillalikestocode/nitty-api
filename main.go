@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 
-	application "github.com/zillalikestocode/community-api/api/app"
-	"github.com/zillalikestocode/community-api/api/app/configs"
+	application "github.com/zillalikestocode/community-api/app"
+	"github.com/zillalikestocode/community-api/configs"
 )
 
 func main() {

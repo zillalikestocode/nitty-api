@@ -8,9 +8,9 @@ import (
 	"time"
 
 	"github.com/go-chi/jwtauth/v5"
-	"github.com/zillalikestocode/community-api/api/app/configs"
-	"github.com/zillalikestocode/community-api/api/app/models"
-	"github.com/zillalikestocode/community-api/api/app/responses"
+	"github.com/zillalikestocode/community-api/configs"
+	"github.com/zillalikestocode/community-api/models"
+	"github.com/zillalikestocode/community-api/responses"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"

@@ -5,11 +5,11 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/go-chi/jwtauth/v5"
-	"github.com/zillalikestocode/community-api/api/app/configs"
-	"github.com/zillalikestocode/community-api/api/app/handler"
+	"github.com/zillalikestocode/community-api/configs"
+	"github.com/zillalikestocode/community-api/handler"
 )
 
-func loadRoutes() *chi.Mux {
+func LoadRoutes() *chi.Mux {
 	router := chi.NewRouter()
 	router.Use(middleware.Logger)
 	router.Use(cors.Handler(cors.Options{
